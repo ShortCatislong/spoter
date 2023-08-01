@@ -1,4 +1,4 @@
-'''this is the WLASL100 dataset, ver2.0'''
+'''this is the LSA64 dataset'''
 
 import ast
 import torch
@@ -103,17 +103,16 @@ class CzechSLRDataset(torch_data.Dataset):
         """
 
         depth_map = torch.from_numpy(np.copy(self.data[idx]))
-#        label = torch.Tensor([self.labels[idx] - 1])
-        label = torch.Tensor([self.labels[idx]]) # Just drop the "-1"
+        label = torch.Tensor([self.labels[idx] - 1])
 
         depth_map = tensor_to_dictionary(depth_map)
 
         # Apply potential augmentations
         if self.augmentations and random.random() < self.augmentations_prob:
 
-            selected_aug = randrange(3) + 1 #disable the augment_rotate method
+            selected_aug = randrange(4)
 
-            if selected_aug == 0: 
+            if selected_aug == 0:
                 depth_map = augment_rotate(depth_map, (-13, 13))
 
             if selected_aug == 1:

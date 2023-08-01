@@ -1,0 +1,17 @@
+usage:  [--experiment_name EXPERIMENT_NAME] [--num_classes NUM_CLASSES] [--hidden_dim HIDDEN_DIM] [--seed SEED]
+        [--training_set_path TRAINING_SET_PATH] [--testing_set_path TESTING_SET_PATH] [--experimental_train_split EXPERIMENTAL_TRAIN_SPLIT]
+        [--validation_set {from-file,split-from-train,none}] [--validation_set_size VALIDATION_SET_SIZE]
+        [--validation_set_path VALIDATION_SET_PATH] [--epochs EPOCHS] [--lr LR] [--log_freq LOG_FREQ] [--save_checkpoints SAVE_CHECKPOINTS]
+        [--scheduler_factor SCHEDULER_FACTOR] [--scheduler_patience SCHEDULER_PATIENCE] [--gaussian_mean GAUSSIAN_MEAN]
+        [--gaussian_std GAUSSIAN_STD] [--plot_stats PLOT_STATS] [--plot_lr PLOT_LR]
+
+LSA64:
+#use czech_slr_dataset.py.LSA64
+python -m train --experiment_name LSA64_test --epoch 2 --lr 0.001 --training_set_path data/LSA64_60fps_train.csv --validation_set split-from-train --validation_set_size 0.15 --testing_set_path data/LSA64_60fps_test.csv
+
+WLASL100:
+#use czech_slr_dataset.py.WLASL
+python -m train --experiment_name WSASL_test --epoch 2 --lr 0.001 --num_classes 100 --training_set_path data/WLASL100_25fps_train.csv --validation_set split-from-train --validation_set_size 0.15 --testing_set_path data/WLASL100_25fps_test.csv
+
+#google collar
+!python -m train --experiment_name WSASL_test --epoch 5 --lr 0.001 --num_classes 100 --training_set_path data/WLASL100_train_25fps.csv --validation_set_path data/WLASL100_val_25fps.csv --testing_set_path data/WLASL100_test_25fps.csv

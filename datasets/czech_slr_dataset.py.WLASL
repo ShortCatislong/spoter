@@ -1,3 +1,5 @@
+'''this is the WLASL100 dataset'''
+
 import ast
 import torch
 
@@ -101,7 +103,8 @@ class CzechSLRDataset(torch_data.Dataset):
         """
 
         depth_map = torch.from_numpy(np.copy(self.data[idx]))
-        label = torch.Tensor([self.labels[idx] - 1])
+#        label = torch.Tensor([self.labels[idx] - 1])
+        label = torch.Tensor([self.labels[idx]]) # Just drop the "-1"
 
         depth_map = tensor_to_dictionary(depth_map)
 
